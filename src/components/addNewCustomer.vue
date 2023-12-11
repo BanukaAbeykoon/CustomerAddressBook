@@ -1,58 +1,60 @@
 <template>
-  <div class="popup">
+  <div class="popup" ref="popup">
+    
     <div class="popup-content">
       <h2>Add Customer</h2>
       <form @submit.prevent="handleSubmit">
-        <label for="name">Customer Name:</label>
-        <input
-          type="name"
-          id="name"
-          v-model="formData.name"
-          required
-        />
+        <div class="col-12 form-group">
+                <label class="col-form-label col-form-label-lg">Customer Name <span class="text-danger">*</span></label>
+                <input type="text" v-model="formData.name" class="form-control form-control-lg">
+            </div>
 
-        <label for="company">Company:</label>
-        <input
-          type="company"
-          id="company"
-          v-model="formData.company"
-          required
-        />
+        <div class="col-12 form-group">
+                <label class="col-form-label col-form-label-lg">Company <span class="text-danger">*</span></label>
+                <input type="text" v-model="formData.company" class="form-control form-control-lg">
+            </div>
 
-        <label for="phone">Phone Number:</label>
-        <input type="phone" id="phone" v-model="formData.phone" required />
+            <div class="col-12 form-group">
+                <label class="col-form-label col-form-label-lg">Phone Number <span class="text-danger">*</span></label>
+                <input type="text" v-model="formData.phone" class="form-control form-control-lg">
+            </div>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" v-model="formData.email" required />
+        <div class="col-12 form-group">
+                <label class="col-form-label col-form-label-lg">Email <span class="text-danger">*</span></label>
+                <input type="email" v-model="formData.email" class="form-control form-control-lg">
+            </div>
 
-        <label for="country">Country:</label>
-        <input
-          type="country"
-          id="country"
-          v-model="formData.country"
-          required
-        />
+            <div class="col-12 form-group">
+                <label class="col-form-label col-form-label-lg">Country <span class="text-danger">*</span></label>
+                <input type="text"  v-model="formData.country" class="form-control form-control-lg">
+            </div>
 
         <label for="addressDetails">Address Details:</label>
         <div v-for="(address, index) in formData.addressDetails" :key="index">
-          <label for="number">Number:</label>
+          <label class="col-form-label col-form-label-lg">Number <span class="text-danger">*</span></label>
           <input type="number" :id="'number' + index" v-model="address.number" required />
 
-          <label for="street">Street:</label>
+          <label class="col-form-label col-form-label-lg">Street <span class="text-danger">*</span></label>
          <input type="street" :id="'street' + index" v-model="address.street" required />
 
-          <label for="city">City,State:</label>
+         <label class="col-form-label col-form-label-lg">City,State <span class="text-danger">*</span></label>
           <input type="city" :id="'city' + index" v-model="address.city" required />
         </div>
 
+        <div class="col-12 form-group text-center">
         <button type="button" @click="removeAddress(index)" class="remove-address-btn">Remove</button>
+      </div>
 
-        <button type="button" @click="addAddress" class="add-address-btn">Add Address</button>
-
-        <button @click="handleSubmit" type="submit" class="submit-btn">Submit</button>
+        <div class="col-12 form-group text-center">
+        <button type="button" @click="addAddress" class="add-address-btn" >Add Address</button>
+        </div>
+        
+        <div class="col-12 form-group text-center">
+                <button  class="submit-btn" @click="handleSubmit" type="submit" >Submit</button>
+            </div>
       </form>
       <br/>
-      <button @click="closePopup">Close</button>
+      <button class="closs-btn" @click="closePopup">Close</button>
     </div>
   </div>
 </template>
@@ -74,7 +76,30 @@ export default {
       },
     };
   },
+
+  watch: {
+    selectedCustomer(newCustomer) {
+      if (newCustomer) {
+        // Assuming there's only one address
+        const addressDetails = newCustomer.addressDetails[0];
+        if (addressDetails) {
+          this.showAddressDetails(addressDetails);
+        }
+      }
+    },
+  },
+
+
   methods: {
+
+    showAddressDetails(addressDetails) {
+      // Set the address details in the form data
+      this.formData.phone = addressDetails.number || "";
+      this.formData.email = addressDetails.street || "";
+      this.formData.country = addressDetails.city || "";
+    },
+
+
     removeAddress(index) {
       
       this.formData.addressDetails.splice(index, 1);
@@ -131,9 +156,7 @@ form {
 }
 
 /* Button styles */
-.submit-btn,
-.add-address-btn,
-.remove-address-btn,
+
 .close-btn {
   background-color: #62f562;
   /* Green color */
@@ -153,5 +176,34 @@ form {
 .remove-address-btn,
 .close-btn {
   margin-top: 10px;
+}
+
+.add-address-btn,
+.remove-address-btn,
+.submit-btn
+.close-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100px;
+  display: inline-block;
+  margin: auto;
+}
+
+.add-address-btn {
+  background-color: #007bff; /* Blue color */
+  color: #fff;
+}
+
+.remove-address-btn {
+  background-color: #dc3545; /* Red color */
+  color: #fff;
+}
+
+.close-btn {
+  background-color: #28a745; /* Green color */
+  color: #fff;
 }
 </style>

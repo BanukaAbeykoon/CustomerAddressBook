@@ -1,13 +1,16 @@
 <template>
   <div>
-    
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
 
     <NavbarComponent />
     <div class="content">
       <div class="table-header">
         <button class="add-customer-btn" @click="showPopup">
-          <i class="fas fa-plus"></i> <!-- Plus icon -->
+          <i class="fas fa-plus"></i>
+          <!-- Plus icon -->
         </button>
         <addNewCustomer
           @form-submitted="handleFormSubmitted"
@@ -72,6 +75,7 @@
             <td>{{ customer.phone }}</td>
             <td>{{ customer.email }}</td>
             <td>{{ customer.country }}</td>
+
             <td>
               <button
                 :class="{
@@ -83,6 +87,18 @@
               </button>
             </td>
           </tr>
+          <!-- Display address details for the selected customer -->
+          
+          <tr v-if="selectedCustomer && selectedCustomer.addressDetails && selectedCustomer.addressDetails.length > 0">
+  <td colspan="6">
+    <div>
+      <p><strong>Number:</strong> {{ selectedCustomer.addressDetails[0].number }}</p>
+      <p><strong>Street:</strong> {{ selectedCustomer.addressDetails[0].street }}</p>
+      <p><strong>City:</strong> {{ selectedCustomer.addressDetails[0].city }}</p>
+    </div>
+  </td>
+</tr>
+
         </tbody>
       </table>
 
@@ -219,7 +235,6 @@ const mockData = [
     country: "Canada",
     status: "Inactive",
   },
-  
 ];
 
 mock.onGet("/api/customers").reply(200, mockData);
@@ -231,13 +246,15 @@ export default {
   },
   data() {
     return {
-      itemsPerPage: 5, 
+      itemsPerPage: 5,
       currentPage: 1,
       searchQuery: "",
       selectedSort: "name",
       customers: [],
       dialogVisible: false,
       isPopupVisible: false,
+      selectedCustomer: null,
+      selectedCustomerIndex: -1,
     };
   },
   mounted() {
@@ -245,12 +262,15 @@ export default {
   },
 
   watch: {
-  
     customers: {
-      handler: 'updateTableData',
+      handler: "updateTableData",
       deep: true,
     },
   },
+
+  created() {
+  this.showCustomerDetails = this.showCustomerDetails.bind(this);
+},
 
   methods: {
     updateTableData() {
@@ -263,9 +283,8 @@ export default {
         } else {
           return 0;
         }
-      })
+      });
     },
-    
 
     fetchCustomerData() {
       const apiUrl = "/api/customers";
@@ -280,17 +299,16 @@ export default {
         });
     },
     closeModal() {
-      
       this.selectedCustomer = null;
     },
 
-    showCustomerDetails(customer) {
-      
+    showCustomerDetails(customer, index) {
+      console.log("Clicked on customer:", customer);
       this.selectedCustomer = customer;
+      this.selectedCustomerIndex = index;
     },
 
     handleFormSubmitted(formData) {
-      
       console.log("Form submitted with data:", formData);
       formData.status = "Active";
       this.customers.push(formData);
@@ -302,12 +320,10 @@ export default {
         if (aValue && bValue) {
           return aValue.localeCompare(bValue);
         } else {
-          
           return 0;
         }
       });
 
-      
       this.closePopup();
       alert("Data submitted successfully!");
     },
@@ -378,7 +394,6 @@ export default {
         if (aValue && bValue) {
           return aValue.localeCompare(bValue);
         } else {
-          
           return 0;
         }
       });
@@ -390,8 +405,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .modal {
   position: fixed;
   top: 0;
@@ -430,7 +443,7 @@ th {
 
 .content {
   margin-left: 220px;
-  
+
   padding: 40px;
 }
 
