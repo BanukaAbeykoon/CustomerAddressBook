@@ -20,7 +20,7 @@
     <div class="content">
       <div class="table-header">
         <div class="summary">
-          <h1>Hello Banuka</h1>
+          <h1>Hello User</h1>
           <div class="summary-item total-customers-bar">
             <p class="summary-label">Total Customers:</p>
             <p class="summary-value">{{ totalCustomers }}</p>
