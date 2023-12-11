@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- Add this line to your HTML file's head section -->
+    
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <NavbarComponent />
@@ -219,7 +219,7 @@ const mockData = [
     country: "Canada",
     status: "Inactive",
   },
-  // Add more dummy data as needed
+  d
 ];
 
 mock.onGet("/api/customers").reply(200, mockData);
@@ -231,7 +231,7 @@ export default {
   },
   data() {
     return {
-      itemsPerPage: 5, // adjust as needed
+      itemsPerPage: 5, 
       currentPage: 1,
       searchQuery: "",
       selectedSort: "name",
@@ -245,7 +245,7 @@ export default {
   },
 
   watch: {
-    // Watch for changes in the 'customers' data and update computations accordingly
+  
     customers: {
       handler: 'updateTableData',
       deep: true,
@@ -280,19 +280,17 @@ export default {
         });
     },
     closeModal() {
-      // Close the modal and reset selectedCustomer
+      
       this.selectedCustomer = null;
     },
 
     showCustomerDetails(customer) {
-      // Assuming you have a modal or a detailed view to display the details,
-      // you can update the modal's data with the selected customer details,
-      // including the address details.
+      
       this.selectedCustomer = customer;
     },
 
     handleFormSubmitted(formData) {
-      // Handle the submitted form data here
+      
       console.log("Form submitted with data:", formData);
       formData.status = "Active";
       this.customers.push(formData);
@@ -304,12 +302,12 @@ export default {
         if (aValue && bValue) {
           return aValue.localeCompare(bValue);
         } else {
-          // Handle the case where the property doesn't exist on one or both items
+          
           return 0;
         }
       });
 
-      // Close the popup or perform any other necessary actions
+      
       this.closePopup();
       alert("Data submitted successfully!");
     },
@@ -380,7 +378,7 @@ export default {
         if (aValue && bValue) {
           return aValue.localeCompare(bValue);
         } else {
-          // Handle the case where the property doesn't exist on one or both items
+          
           return 0;
         }
       });
@@ -392,7 +390,7 @@ export default {
 </script>
 
 <style scoped>
-/* Add any necessary styles for your table */
+
 
 .modal {
   position: fixed;
@@ -432,7 +430,7 @@ th {
 
 .content {
   margin-left: 220px;
-  /* Adjust based on the width of the left sidebar */
+  
   padding: 40px;
 }
 
@@ -501,7 +499,6 @@ th {
 .add-customer-btn {
   float: right;
   background-color: #008000;
-  /* Change to your desired color */
   color: #fff;
   padding: 5px 10px;
   border-radius: 5px;

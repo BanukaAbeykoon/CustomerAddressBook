@@ -37,21 +37,21 @@ export default {
   methods: {
     setActiveTab(tabName) {
       this.activeTab = tabName;
-      // You can add logic here to handle navigation or other actions based on the selected tab
+      
     }
   }
 };
 </script>
 
 <style scoped>
-/* Add styles for your left sidebar */
+
 .left-sidebar {
   width: 200px;
   height: 100%;
 
   color: #d4d6da;
   padding: 20px;
-  position: fixed; /* Keep the sidebar fixed while scrolling */
+  position: fixed; 
   top: 0;
   left: 0;
   bottom: 0;
@@ -80,8 +80,8 @@ padding: 10px;
 transition: background-color 0.3s;
 display: flex;
 align-items: center;
-border-radius: 5px; /* Add curved edges */
-position: relative; /* Add relative positioning for the ">" symbol */
+border-radius: 5px; 
+position: relative; 
 }
 
 .navigation-buttons li:hover {

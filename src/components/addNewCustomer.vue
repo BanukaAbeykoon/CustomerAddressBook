@@ -68,7 +68,7 @@ export default {
         phone: "",
         country:"",
         addressDetails: [
-          // Initial address details
+          
           { number: "", street: "", city: "" },
         ],
       },
@@ -76,17 +76,17 @@ export default {
   },
   methods: {
     removeAddress(index) {
-      // Remove the address at the specified index
+      
       this.formData.addressDetails.splice(index, 1);
     },
 
     addAddress() {
-      // Add a new empty address to the array
+      
       this.formData.addressDetails.push({ number: "", street: "", city: "" });
     },
 
     handleSubmit() {
-      // Handle form submission logic, e.g., emit an event with the form data
+      
       this.$emit("form-submitted", this.formData);
       this.closePopup();
     },
@@ -99,14 +99,14 @@ export default {
 </script>
 
 <style scoped>
-/* Add your styles for the popup here */
+
 .popup {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  background: rgba(0, 0, 0, 0.5); 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,14 +119,14 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Additional styles for form layout */
+
 form {
   display: grid;
   gap: 10px;
 }
 
 .customer-form {
-  max-width: 400px; /* Adjust the maximum width as needed */
+  max-width: 400px; 
   margin: auto;
 }
 
