@@ -219,7 +219,7 @@ const mockData = [
     country: "Canada",
     status: "Inactive",
   },
-  d
+  
 ];
 
 mock.onGet("/api/customers").reply(200, mockData);
