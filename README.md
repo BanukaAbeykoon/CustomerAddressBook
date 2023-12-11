@@ -1,24 +1,2 @@
-# vue-customer-management
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+clone the repository and type "npm install" to configure the project and run "npm run serve" to load the project.
+https://customer-address-book.vercel.app/  This is the hosted link for the project.
